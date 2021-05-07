@@ -102,6 +102,7 @@ $error = "";
               <label>search local</label>
               <input type="text" class="field small-field" />
               <input type="submit" class="button" value="search" />
+              
             </div>
           </div>
           <!-- End Box Head -->
@@ -126,18 +127,24 @@ $error = "";
 					<td>
            
 						<form method="GET"  action="supprimerlocal.php" > 
-						<a href="supprimerlocal.php" class="ico del">supprimer</a>
+						<a href="supprimerlocal.php?id=<?php echo $local['id']?>" class="ico del">supprimer</a>
             <input type="hidden" value=<?PHP echo $local['id']; ?> name="id">
             <?php $s=$local['id']; ?>
 						</form>
 					</td>
 					<td>
-          <a href="modifierlocal.php" class="ico edit">MODIFIER</a>
+          <a href="modifierlocal.php?id=<?php echo $local['id']?>&& pays=<?php echo $local['pays']?>&& nom_rue=<?php echo $local['nom_rue']?>&&codepostal=<?php echo $local['codepostal']?>" class="<ico edit">MODIFIER</a>
 					</td>
+          <td>
+          
 				</tr>
         <?PHP
+
+
+
 				}
 			?>
+      
        
               
             </table>
@@ -171,7 +178,7 @@ $error = "";
                 </tr>
                 <tr>
                     <td>
-                        <label for="pays">pays:
+                        <label for="pays">Gouvernant:
                         </label>
                     </td>
                     <td><input type="text" name="pays" id="pays" maxlength="50" class="tab"></td>
@@ -194,7 +201,7 @@ $error = "";
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="codepostal" id="codepostal" class="tab">
+                        <input type="text" name="codepostal" id="codepostal" class="tab" >
                     </td>
                 </tr>
                

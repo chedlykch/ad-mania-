@@ -94,14 +94,14 @@ $nom=$row->nom;
                         <label for="id">id:
                         </label>
                     </td>
-                    <td><input   type="text" name="id" id="id" maxlength="50" class="tab" ></td>
+                    <td><input   type="text" name="id" id="id" maxlength="50" class="tab" value="<?php echo $_GET['id']?>" ></td>
                 </tr>
                 <tr>
                     <td>
                         <label for="type">type:
                         </label>
                     </td>
-                    <td><input type="text" name="type" id="type" maxlength="50" class="tab"></td>
+                    <td><input type="text" name="type" id="type" maxlength="50" class="tab" value="<?php echo $_GET['type']?>"></td>
 </textarea></td>
                 </tr>
                 
@@ -111,18 +111,17 @@ $nom=$row->nom;
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="nom" id="nom" class="tab" >
+                        <input type="text" name="nom" id="nom" class="tab" value=" <?php echo $_GET['nom']?>">
                     </td>
                 </tr>
                 <tr>
                     
-                    <td>
-                        <label for="categorie" >categorie:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="text" name="categorie" id="categorie" class="tab">
-                    </td>
+                <div class="form-group">
+                                
+                                <input class="form-control"  id="image" name="image" type="file" placeholder="image"   />
+                                                           </div>
+                                                         
+                                                             </div>
                 </tr>
                
                

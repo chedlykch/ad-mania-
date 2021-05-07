@@ -13,19 +13,19 @@ $error = "";
         isset($_POST["id"]) && 
           isset($_POST["type"]) && 
         isset($_POST["nom"]) && 
-        isset($_POST["categorie"])
+        isset($_POST["image"])
     ) {
         if (
             !empty($_POST["id"]) && 
             !empty($_POST["type"]) && 
             !empty($_POST["nom"]) &&
-            !empty($_POST["categorie"]) 
+            !empty($_POST["image"]) 
         ) {
             $map1 = new map(
               $_POST["id"],
               $_POST["type"],
               $_POST["nom"], 
-              $_POST["categorie"]
+              $_POST["image"]
             );
             $mapc1->ajoutermap($map1);
             
@@ -113,7 +113,7 @@ $error = "";
                 <th>id</th>
                 <th>type</th>
                 <th>nom</th>
-                <th>categorie</th>
+                <th>photo</th>
               </tr>
               <?PHP
 				foreach($listemap as $map){
@@ -122,17 +122,20 @@ $error = "";
 					<td><?PHP echo $map['id'];  ?></td>
 					<td><?PHP echo $map['type']; ?></td>
 					<td><?PHP echo $map['nom']; ?></td>
-          <td><?PHP           echo $map['categorie']; ?></td>
+          <td><img style="
+             width: 50px;
+            " src="../img/<?php echo $map['photo']?>"></td>
+					<td>
 					<td>
            
 						<form method="GET"  action="supprimermap.php" > 
-						<a href="supprimermap.php" class="ico del">supprimer</a>
+						<a href="supprimermap.php?id=<?php echo $map['id']?>" class="ico del">supprimer</a>
             <input type="hidden" value=<?PHP echo $map['id']; ?> name="id">
             <?php $s=$map['id']; ?>
 						</form>
 					</td>
 					<td>
-          <a href="modifiermap.php" class="ico edit">MODIFIER</a>
+          <a href="modifiermap.php?id=<?php echo $map['id']?>&& type=<?php echo $map['type']?> && nom=<?php echo $map['nom']?>" class="<ico edit">MODIFIER</a>
 					</td>
 				</tr>
         <?PHP
@@ -189,13 +192,12 @@ $error = "";
                 </tr>
                 <tr>
                     
-                    <td>
-                        <label for="categorie" >categorie:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="text" name="categorie" id="categorie" class="tab">
-                    </td>
+                <div class="form-group">
+                                
+                                <input class="form-control"  id="image" name="image" type="file" placeholder="image"   />
+                                                           </div>
+                                                         
+                                                             </div>
                 </tr>
                
                

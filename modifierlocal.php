@@ -12,7 +12,7 @@ if (isset($_GET['id'])){
     foreach($result as $row){
 
 
-$nom=$row->nom;
+
     }
 }
 ?>
@@ -94,14 +94,14 @@ $nom=$row->nom;
                         <label for="id">id:
                         </label>
                     </td>
-                    <td><input   type="text" name="id" id="id" maxlength="50" class="tab" ></td>
+                    <td><input   type="text" name="id" id="id" maxlength="50" class="tab" value="<?php echo $_GET['id']?>" ></td>
                 </tr>
                 <tr>
                     <td>
                         <label for="Gouvernant">Gouvernant:
                         </label>
                     </td>
-                    <td><input type="text" name="Gouvernant" id="Gouvernant" maxlength="50" class="tab"></td>
+                    <td><input type="text" name="Gouvernant" id="Gouvernant" maxlength="50" class="tab" value="<?php echo $_GET['pays']?>"></td>
 </textarea></td>
                 </tr>
                 
@@ -111,7 +111,7 @@ $nom=$row->nom;
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="nom_rue" id="nom_rue" class="tab" >
+                        <input type="text" name="nom_rue" id="nom_rue" class="tab" value="<?php echo $_GET['nom_rue']?>" >
                     </td>
                 </tr>
                 <tr>
@@ -121,7 +121,7 @@ $nom=$row->nom;
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="codepostal" id="codepostal" class="tab">
+                        <input type="text" name="codepostal" id="codepostal" class="tab" value="<?php echo $_GET['codepostal']?>">
                     </td>
                 </tr>
                
