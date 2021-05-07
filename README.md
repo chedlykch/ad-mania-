@@ -1,1 +1,1 @@
-# ad-mania-
+# ad-mania-jomla
