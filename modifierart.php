@@ -1,17 +1,17 @@
 <?php  
 include "../../core/artc.php";
 
-if (isset($_GET['id'])){
 
-    $artc=new artc();
-    $result=$artc->recupererart($_GET['id']);
-
-    foreach($result as $row){
-
-
-$nom=$row->nom;
-    }
+if (isset($_POST['id'])){
+  $artc1=new artc();
+  $result=$artc1->recupererart($_GET['id']);
+  foreach($result as $row){
+  $id=$row['id'];
+  $categorie=$row['categorie'];
+  $nom=$row['nom'];}
+ 
 }
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -91,14 +91,14 @@ $nom=$row->nom;
                         <label for="id">id:
                         </label>
                     </td>
-                    <td> <input type="text" name="id" id="id" maxlength="50" class="tab" ></td>
+                    <td> <input type="text" name="id" id="id" maxlength="50" class="tab" value="<?php echo $_GET['id'] ;?> " ></td>
                 </tr>
                 <tr>
                     <td>
                         <label for="categorie">categorie:
                         </label>
                     </td>
-                    <td><input type="text" name="categorie" id="categorie" maxlength="50" class="tab"></td>
+                    <td><input type="text" name="categorie" id="categorie" maxlength="50" class="tab" value="<?php echo $_GET['categorie'] ;?> "></td>
 </textarea></td>
                 </tr>
                 
@@ -108,7 +108,7 @@ $nom=$row->nom;
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="nom" id="nom" class="tab">
+                        <input type="text" name="nom" id="nom" class="tab" value="<?php echo $_GET['nom'] ;?> ">
                     </td>
                 </tr>
                

@@ -101,11 +101,14 @@ $error = "";
           <!-- Box Head -->
           <div class="box-head">
             <h2 class="left">Current Articles</h2>
-            <div class="right">
+            <form method="POST"      >     
+             <div class="right">
               <label>search articles</label>
-              <input type="text" class="field small-field" />
+              <input type="text" name="rech" id="rech" class="field small-field" />
               <input type="submit" class="button" value="search" />
             </div>
+            </form>
+          
           </div>
           <!-- End Box Head -->
           <!-- Table -->
@@ -120,6 +123,10 @@ $error = "";
                 <th>image</th>
               </tr>
               <?PHP
+              if (isset($_POST["rech"]))
+              {
+                $listearticle=$articlec1->rechercherarticle($_POST["rech"]);
+              }
 				foreach($listearticle as $article){
 			?>
 				<tr>
@@ -129,17 +136,17 @@ $error = "";
           <td><?PHP echo $article['disponibilite']; ?></td>
           <td><img style="
              width: 50px;
-            " src="../img/<?php echo $article['Image'] ?>"></td>
+            " src="../img/<?php echo $article['image'] ?>"></td>
 					<td>
            
-						<form method="GET"  action="supprimerarticle.php" > 
-						<a href="supprimerarticle.php" class="ico del">Delete</a>
+						<form method="POST"  action="supprimerarticle.php" > 
+						<a href="supprimerarticle.php?id=<?PHP echo $article['id']; ?>" class="ico del">Delete</a>
             <input type="hidden" value=<?PHP echo $article['id']; ?> name="id">
             <?php $s=$article['id']; ?>
 						</form>
 					</td>
 					<td>
-          <a href="modifierarticle.php" class="ico edit">Edit</a>
+          <a href="modifierarticle.php?id=<?PHP echo $article['id']; ?>&&categorie=<?PHP echo $article['categorie']; ?>&&nom=<?PHP echo $article['nom']; ?>&&image=<?PHP echo $article['image']; ?>" class="ico edit">Edit</a>
 					</td>
 				</tr>
         <?PHP

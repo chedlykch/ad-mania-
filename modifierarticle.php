@@ -1,16 +1,19 @@
 <?php  
 include "../../core/articlec.php";
 
-if (isset($_GET['id'])){
+if (isset($_POST['id'])){
 
     $articlec=new articlec();
     $result=$articlec->recupererarticle($_GET['id']);
 
     foreach($result as $row){
 
-
+$id=$row->id ;
 $nom=$row->nom;
+$categorie=$row->categorie;
+$disponibilte=$row->disponibilite;
     }
+
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -91,14 +94,14 @@ $nom=$row->nom;
                         <label for="id">id:
                         </label>
                     </td>
-                    <td> <input type="text" name="id" id="id" maxlength="50" class="tab" ></td>
+                    <td> <input type="text" name="id" id="id" maxlength="50" class="tab" value="<?php echo $_GET['id'];?>" ></td>
                 </tr>
                 <tr>
                     <td>
                         <label for="categorie">categorie:
                         </label>
                     </td>
-                    <td><input type="text" name="categorie" id="categorie" maxlength="50" class="tab"></td>
+                    <td><input type="text" name="categorie" id="categorie" maxlength="50" class="tab"  value="<?php echo $_GET['categorie'];?>"></td>
 </textarea></td>
                 </tr>
                 
@@ -108,7 +111,7 @@ $nom=$row->nom;
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="nom" id="nom" class="tab">
+                        <input type="text" name="nom" id="nom" class="tab"  value="<?php echo $_GET['nom'];?>">
                     </td>
                 </tr>
                 <tr>
@@ -118,8 +121,14 @@ $nom=$row->nom;
                         </label>
                     </td>
                     <td>
-                        <input type="radio" name="disponibilite" id="disponibilite" class="tab">
+                        <input type="radio" name="disponibilite" id="disponibilite" class="tab"  value="<?php echo $_GET['disponibilite'];?>">
                     </td>
+                    <div class="form-group">
+                                
+                                <input class="form-control"  id="image" name="image" type="file" placeholder="image" value="<?php echo $_GET['image'];?>"  />
+                                                           </div>
+                                                         
+                                                             </div> 
                 </tr>
                
                

@@ -1,6 +1,8 @@
 <?php
 include_once '../../entities/art.php';
 include_once '../../core/artc.php';
+
+
 $error = "";
 
     // create event
@@ -13,19 +15,21 @@ $error = "";
         isset($_POST["id"]) && 
          isset($_POST["categorie"]) && 
         isset($_POST["nom"])
+        
        
     ) {
         if (
             !empty($_POST["id"]) && 
             !empty($_POST["categorie"]) && 
-            !empty($_POST["nom"]) 
+            !empty($_POST["nom"])
+             
            
         ) {
             $art1 = new art(
               $_POST["id"],
               $_POST["categorie"],
               $_POST["nom"]
-             
+              
             );
             $artc1->ajouterart($art1);
             
@@ -35,8 +39,13 @@ $error = "";
             $error = "Missing information";
     }
     $listeart=$artc1->afficherart();
-     
 
+
+
+
+
+    
+    
 ?>
 
 
@@ -99,10 +108,12 @@ $error = "";
           <div class="box-head">
             <h2 class="left">Current art</h2>
             <div class="right">
+            <form action="rechercherart.php" method="POST" class="login-html">
               <label>search arts</label>
-              <input type="text" class="field small-field" />
-              <input type="submit" class="button" value="search" />
+              <input type="text"  name="idr" id="idr" class="field small-field"  />
+              <input type="submit" class="button" value="search" href= "rechercherart.php?idr=<?php echo $_POST["idr"]?>" />
             </div>
+            </form>
           </div>
           <!-- End Box Head -->
           <!-- Table -->
@@ -125,14 +136,14 @@ $error = "";
           
 					<td>
            
-						<form method="GET"  action="supprimerart.php" > 
-						<a href="supprimerart.php" class="ico del">Delete</a>
+						<form method="POST"  action="supprimerart.php" > 
+						<a href="supprimerart.php?id=<?php echo $art['id'];?>" class="ico del">Delete</a>
             <input type="hidden" value=<?PHP echo $art['id']; ?> name="id">
-            <?php $s=$art['id']; ?>
 						</form>
 					</td>
 					<td>
-          <a href="modifierart.php" class="ico edit">Edit</a>
+          <a href="modifierart.php?id=<?PHP echo $art['id']; ?>&&categorie=<?PHP echo $art['categorie']; ?>&&nom=<?PHP echo $art['nom']; ?>" class="ico edit" >Edit</a>
+          
 					</td>
 				</tr>
         <?PHP
@@ -167,7 +178,7 @@ $error = "";
                         <label for="id">id:
                         </label>
                     </td>
-                    <td><input type="text" name="id" id="id" maxlength="50" class="tab"></td>
+                    <td><input type="text" name="id" id="id" maxlength="50" class="tab" value=""></td>
                 </tr>
                 <tr>
                     <td>
