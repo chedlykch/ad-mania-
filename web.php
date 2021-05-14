@@ -1,10 +1,42 @@
+<?php
+include_once '../../entities/map.php';
+include_once '../../core/mapc.php';
+
+
+
+
+
+$error = "";
+    // create event
+    $map1 = null;
+    $local1 = null;
+
+    // create an instance of the controller
+
+    $mapc1 = new mapc();
+    $listemap=$mapc1->affichermap();
+    /*$localc1 = new localc();
+    $listelocal=$localc1->afficherlocal();*/
+?>
+
+
+
+
+
+
+
+
+
+
+
+
 <html>
 <head>
 <title>  ANTICO WEBSITE </title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style1.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
-
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
@@ -14,6 +46,8 @@
 
 </head>
 <body>
+<audio src="MUSIC.mp3" autoplay loop></audio>
+</div>
   <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#"><img src="img/logo.png" > </a>
@@ -29,10 +63,10 @@
               <a class="nav-link" href="#about">ABOUT  </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#local">LOCAL</a>
+              <a class="nav-link" href="#local">MAP INTERNE</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="#MAP">MAP INTERNE </a>
+              <a class="nav-link " href="#MAP">LOCAL </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="#price">PAIEMENT EN LIGNE </a>
@@ -155,112 +189,84 @@
 
 <section id="local">
 <div class="container">
-<h1> TAB LOCAL</h1>
+<h1> LES MAPS </h1>
+
+
+
+
+<form class="form-inline" method="POST"   >
+          <input class="form-control mr-sm-2" name="rech" id="rech" type="search"  placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Chercher par nom </button>
+        </form>
+<?php
+if (isset($_POST["rech"]))
+{
+  $listemap=$mapc1->recherchermap($_POST["rech"]);
+}
+
+                    foreach($listemap as $map)
+                    {
+                ?>
 <div class="row local">
-<div class="col-md-3 text-center">
-  <div class="icon">
-    <i class="fa fa-desktop" ></i>
-  </div>  
-  <h3>  MAP  </h3>
-  <p>
-    Une carte de positionnement est l'objectif ou le positionnement technique 
-    d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
 
-  </p>
-</div>
 <div class="col-md-3 text-center">
-    <div class="icon">
-        <i class="fas fa-car"></i>
-    </div>  
-    <h3> TRANSPORT </h3>
-    <p>
-      Une carte de positionnement est l'objectif ou le positionnement technique 
-      d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-  
+
+      
+    <h2 class="text-capitalize" id="room"><?php echo $map['nom']; ?></h2>
+                
+                <div class="row">
+                    <div class=""> 
+        
+                        <img src="../img/<?php echo $map['photo'] ?>" width="250" height="250">
+                    </div>
+<div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+</div>
+</div>           
+                    <li class="nav-item">
+                <a class="nav-link " href="#price"> <button type="button" class="btn btn-primary"  >  Reserver maintenant </button> </a>
+              </li>
+                    <?php
+                    }
+                ?>     
     </p>
   </div>
-  <div class="col-md-3 text-center">
-    <div class="icon">
-        <i class="fas fa-film"></i>
-    </div>  
-    <h3> CINEMA </h3>
-    <p>
-      Une carte de positionnement est l'objectif ou le positionnement technique 
-      d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-  
-    </p>
-  </div> <div class="col-md-3 text-center">
-    <div class="icon">
-        <i class="fas fa-film"></i>
-    </div>  
-    <h3> BATIMENT</h3>
-    <p>
-      Une carte de positionnement est l'objectif ou le positionnement technique 
-      d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-  
-    </p>
-  </div>
-  
 
 </div>
+
 
 
 
 </section>
 <section id="MAP">
     <div class="container">
-        <h1> TAB MAP_INTERNE</h1>
-        <div class="row local">
-        <div class="col-md-3 text-center">
-          <div class="icon">
-            <i class="fas fa-map-marked-alt"></i>
-          </div>  
-          <h3>  FACILE  </h3>
-          <p>
-            Une carte de positionnement est l'objectif ou le positionnement technique 
-            d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-        
-          </p>
-        </div>
-        <div class="col-md-3 text-center">
-            <div class="icon">
-                <i class="fas fa-car"></i>
-            </div>  
-            <h3> TEMPS </h3>
-            <p>
-              Une carte de positionnement est l'objectif ou le positionnement technique 
-              d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-          
-            </p>
-          </div>
-          <div class="col-md-3 text-center">
-            <div class="icon">
-                <i class="fas fa-film"></i>
-            </div>  
-            <h3> EFFICACE </h3>
-            <p>
-              Une carte de positionnement est l'objectif ou le positionnement technique 
-              d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-          
-            </p>
-          </div> <div class="col-md-3 text-center">
-            <div class="icon">
-                <i class="fas fa-film"></i>
-            </div>  
-            <h3> INNOVATIVE</h3>
-            <p>
-              Une carte de positionnement est l'objectif ou le positionnement technique 
-              d'une marque par rapport à d'autres marques. Pour créer une carte de positionnement, deux attributs cibles sont nécessaires 
-          
-            </p>
-          </div>
-    </div>
+        <h1> LES LOCALS</h1>
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 </section>
+
+
+
+
+
+
+
+
+
+
+
+       
 <section id="price">
 <div class="container">
   <h1>LISTE DES PRIX</h1>
@@ -273,11 +279,11 @@
 </div>
 <div class="price-content">
   <ul>
-    <li><i class="fa fa-check-circle" ></i>espaceeeeeeeeee</li>
-    <li><i class="fa fa-check-circle" ></i>ssssssssssssssssssssss</li>
-    <li><i class="fa fa-check-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-    <li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-    <li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
+    <li><i class="fa fa-check-circle" ></i>.1 mois gratuit</li>
+    <li><i class="fa fa-check-circle" ></i>.usage simple</li>
+    <li><i class="fa fa-check-circle" ></i>.Pas de notification</li>
+    <li><i class="fa fa-times-circle" ></i> Pas d'information</li>
+    <li><i class="fa fa-times-circle" ></i>.Pas d'evaluation</li>
 
   </ul>
 </div>
@@ -295,11 +301,11 @@
 </div>
 <div class="price-content">
 <ul>
-  <li><i class="fa fa-check-circle" ></i>espaceeeeeeeeee</li>
-  <li><i class="fa fa-check-circle" ></i>ssssssssssssssssssssss</li>
-  <li><i class="fa fa-check-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-  <li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-  <li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
+  <li><i class="fa fa-check-circle" ></i>3 mois d'usage </li>
+  <li><i class="fa fa-check-circle" ></i>.usage normal</li>
+  <li><i class="fa fa-check-circle" ></i>.notifiaction</li>
+  <li><i class="fa fa-times-circle" ></i>.assez d'information</li>
+  <li><i class="fa fa-times-circle" ></i>.pas d'evaluation</li>
 </ul>
 </div>
 <div class="price-button">
@@ -315,11 +321,11 @@
 </div>
 <div class="price-content">
 <ul>
-<li><i class="fa fa-check-circle" ></i>espaceeeeeeeeee</li>
-<li><i class="fa fa-check-circle" ></i>ssssssssssssssssssssss</li>
-<li><i class="fa fa-check-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-<li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-<li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
+<li><i class="fa fa-check-circle" ></i>.6 mois d'usage</li>
+<li><i class="fa fa-check-circle" ></i>.usage gold</li>
+<li><i class="fa fa-check-circle" ></i>.notification</li>
+<li><i class="fa fa-times-circle" ></i>.information</li>
+<li><i class="fa fa-times-circle" ></i>.evaluation</li>
 
 </ul>
 </div>
@@ -336,11 +342,11 @@
 </div>
 <div class="price-content">
 <ul>
-<li><i class="fa fa-check-circle" ></i>espaceeeeeeeeee</li>
-<li><i class="fa fa-check-circle" ></i>ssssssssssssssssssssss</li>
-<li><i class="fa fa-check-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-<li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
-<li><i class="fa fa-times-circle" ></i>hhhhhhhhhhhhhhhhhhhhhh</li>
+<li><i class="fa fa-check-circle" ></i>.12 mois d'usage</li>
+<li><i class="fa fa-check-circle" ></i>.usage PREMUIM</li>
+<li><i class="fa fa-check-circle" ></i>.notification</li>
+<li><i class="fa fa-times-circle" ></i>.infromation</li>
+<li><i class="fa fa-times-circle" ></i>evaluation gratuite</li>
 
 </ul>
 </div>
@@ -361,34 +367,32 @@
   <h1>CONTACTER </h1>
   <div class=row>
     <div class="col-md-6">
+
+
+
+
+    
 <form class="contact-form">
   <div class="contact-form">
 <div class="form-group">
-
-<input type="text"name="nom" class="form-control" placeholder="votre nom ">
+<input type="text" class="form-control" placeholder="votre nom et prénom ">
 
 </div>
 
-
-
-<div class="form-group">
-  <input type="text"name="prenom" class="form-control" placeholder="votre prenom ">
-  
-  </div>
   <div class="form-group">
-    <input type="number"name="num" class="form-control" placeholder="votre numéro portable ">
+    <input type="number" class="form-control" placeholder="votre numéro portable ">
     
     </div>
     <div class="form-group">
-      <input type="email"name="email" class="form-control" placeholder="votre email ">
+      <input type="email" class="form-control" placeholder="votre email ">
       
       </div>
       <div class="form-group">
-        <textarea  class="form-control" rows="7" name="message" placeholder="ecrire votre message "></textarea>
+        <textarea  class="form-control" rows="7" placeholder="ecrire votre message "></textarea>
         
         </div>
   </div>
-  <button type="submit" name="send" class="btn btn-primary"> ENVOYER </button>
+  <button type="submit"  class="btn btn-primary"> ENVOYER</button>
 </form>
     </div>
     <div class="col-md-6 contact-info">
@@ -412,6 +416,6 @@
 <script>
 	var scroll = new SmoothScroll('a[href*="#"]');
 </script>
-  
+
 </body>
 </html>
