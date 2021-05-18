@@ -1,6 +1,6 @@
 * { padding:0; margin:0; outline:0; }
 body {
-
+	background:rgb(212, 44, 44);
 	font-family: Verdana, sans-serif;
 	font-size:11px;
 	line-height:14px;
@@ -23,7 +23,7 @@ textarea { overflow:hidden; }
 a img { border:0; }
 
 a { color:rgb(78, 78, 78); text-decoration: underline; cursor:pointer; }
-a:hover { color:#141313; text-decoration: none;}
+a:hover { color:#8d341f; text-decoration: none;}
 
 .left, .alignleft { float:left; display:inline; }
 .right, .alignright { float:right; display:inline; }
@@ -96,7 +96,7 @@ h3 a{ text-decoration: none; }
 
 .pagging { height:20px; padding:8px 10px; line-height:19px; color:#949494; }
 .pagging a{ background:url(images/pagging.gif) repeat-x 0 0; height:20px; float:left; padding:0 8px; border:solid 1px #d5d5d5; text-decoration: none; color:#949494; margin-left:5px;  }
-.pagging a:hover { border-color:#131212; background:#ba4c32; color:#fff; }
+.pagging a:hover { border-color:#8c3521; background:#ba4c32; color:#fff; }
 .pagging span{ float:left; margin-left:5px; padding-top:2px; }
 
 
